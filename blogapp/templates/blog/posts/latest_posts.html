@@ -1,0 +1,15 @@
+
+                                {% for post in latest_posts %}
+                                
+                                    <article>
+                                        <figure>
+                                            <img src="demo-data/img6.jpg" width="1200" height="570" alt=""/>
+                                        </figure>
+                                        <header>
+                                            <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+                                            <time datetime="{{post.publish}}">{{post.publish}}</time>
+                                        </header>
+                                        <p>{{ post.body|truncatewords:30|linebreaks }}</p>
+                                    </article>
+                                
+                                {% endfor %}

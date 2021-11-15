@@ -1,0 +1,72 @@
+
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+{% block content %}
+        <div class="mainWrapper">
+            <div class="container">
+            <div class="pageContentArea clearfix">
+                
+                    <main>
+                        <h5 class="mb-20">Posts</h5>
+
+                        {% for post in posts %}
+                            <article>
+                                <figure class="multiImages">
+                                    <img src="demo-data/img1.jpg" width="1200" height="570" alt=""/>
+                                    <img src="demo-data/img2.jpg" width="1200" height="570" alt=""/>
+                                </figure>
+                                <header>
+                                    <h1><a href="{{post.get_absolute_url}}">{{post.title}}</a></h1>
+                                    <time datetime="2015-01-31 08:30:45.687">{{post.publish}}</time>
+                                    <div class="specialContent">
+                                        
+                                        
+                                            {% for tag in post.tag.all %}
+                                                <a class="cat-tag" href="{% url "blog:post_list_by_tag" tag.slug %}">  {{ tag.name }}</a>
+                                            {% endfor %}   
+                                        
+                                        
+                                    </div>
+                                </header>
+                                <p>{{post.body|truncatewords:60|linebreaks }}</p>
+                                <footer>
+                                    <a href="#"><i class="icon-like2"></i> 52</a>
+                                </footer>
+                            </article>
+                        {% endfor %}
+                        
+
+                        
+                                                 
+                        {% include "blog/partials/pagination.html" with page=posts %}
+                    </main>
+                
+                    <aside class="sidebar">
+                        <header>
+                            <h3>What's New</h3>                
+                        </header>
+                        <div class="widget widget_timeline">
+                            <div class="timeline-wrap">
+                                
+
+                                {% show_latest_posts 3 %}
+
+                                
+                                <a href="#" class="loadTimeline">Next</a>
+                            </div><!--timeline-wrap-->
+                        </div>
+                    </aside><!--sidebar-->
+                
+                </div><!--pageContentArea-->
+            </div>   
+        </div>
+        <div class="container">   
+            <!--=================================
+            Most visitied
+            =================================-->
+           
+            
+        </div><!--container-->
+        
+{% endblock %}
+

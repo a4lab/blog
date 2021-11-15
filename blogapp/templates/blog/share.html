@@ -1,0 +1,100 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Blog - Home</title>
+<meta name="description" content="">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no"/>
+
+<link href="http://fonts.googleapis.com/css?family=Ubuntu:400,300" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" >
+<link href="{% static "css/pixeden-icons.css" %}" rel="stylesheet" type="text/css" >
+<link href="{% static "css/owl.carousel.css" %}" rel="stylesheet" type="text/css" >
+<link href="{% static "css/animations.css" %}" rel="stylesheet" type="text/css" >
+<link href="{% static "css/dl-menu.css" %}" rel="stylesheet" type="text/css" >
+<link href="{% static "css/main.css" %}" rel="stylesheet" type="text/css"  >
+<script src="{% static "js/lib/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+</head>
+<body class="page">
+
+
+<div class="xv-overFlow"> 
+
+
+
+<div>
+    {% include "blog/partials/nav.html" %}
+</div>
+
+
+<div class="after-header">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-xs-12">
+            	<form class="search-form">
+                	<input type="text"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mainWrapper">
+<div class="container">
+	<div class="pageContentArea">
+        <main>
+            <header>
+            	<h1>Share Post</h1>
+            </header>
+            <div class="alert alert-success  ">
+                <strong>Success!</strong> <b> "{{post.title}}"</b> is shared
+            </div>
+            <div class="pageContent">
+            	<p class="text-center">Share <b> "{{post.title}}"</b> </p>
+				
+                <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="row">
+                        <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
+                    </div>
+                {% endfor %}
+
+                    <p class="text-center"><button class="btn btn-default">Send</button></p>
+                    
+                </form>
+
+            </div>
+        </main><!--main content of current page-->
+    </div><!--pageContentArea-->
+</div><!--container-->
+</div><!--container-->
+<!--=================================
+footer
+=================================-->
+{% include "blog/partials/footer.html" %}
+
+
+</div>
+
+<!--=================================
+Script Source
+=================================-->
+<script src="{% static 'js/lib/jquery.js' %} "></script>
+<script src="{% static 'js/lib/jquery.dlmenu.js' %}"></script>
+<script src="{% static 'js/lib/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/lib/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/lib/jquery.inview.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
